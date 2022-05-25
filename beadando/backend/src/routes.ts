@@ -11,16 +11,21 @@ export function getRouter() {
     const transactionController = new TransactionController();
 
     router.get('/bankaccount', bankaccountController.getAll);
+    router.get('/bankaccount:id', bankaccountController.getOne);
     router.post('/bankaccount', bankaccountController.create);
     router.delete('/bankaccount/:id', bankaccountController.delete);
     router.put('/bankaccount', bankaccountController.update);
-    router.get('/bankaccount:id', bankaccountController.getOne);
 
     router.get('/bankclient', bankclientController.getAll);
-    router.get('/bankaccount', bankaccountController.getOne);
     router.get('/bankclient:id', bankclientController.getById);
+    router.put('/bankclient:id', bankaccountController.update);
+    router.post('/bankclient', bankclientController.create)
     router.delete('/bankaccount:id', bankaccountController.delete);
-    router.put('/bankaccount', bankaccountController.create);
+ 
+
+    router.get('/transaction-form', transactionController.create);
+    router.get('/transaction-list:id', transactionController.getOne);
+    router.get('/transaction-list', transactionController.getAll);
     
 
     return router;

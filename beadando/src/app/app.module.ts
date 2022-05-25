@@ -10,6 +10,8 @@ import { TransactionListComponent } from './transaction-list/transaction-list.co
 import { TransactionFormComponent } from './transaction-form/transaction-form.component';
 import { BankaccountFormComponent } from './bankaccount-form/bankaccount-form.component';
 import { BankaccountListComponent } from './bankaccount-list/bankaccount-list.component';
+import { Router } from 'express';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -20,14 +22,15 @@ import { BankaccountListComponent } from './bankaccount-list/bankaccount-list.co
     TransactionFormComponent,
     BankaccountFormComponent,
     BankaccountListComponent,
-  
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    RouterModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -11,11 +11,11 @@ export class BankclientService {
     constructor(private http: HttpClient) {}
 
    async getAllBankclients() {
-        return await lastValueFrom(this.http.get<Bankclient[]>('/api/bankclients'));
+        return await lastValueFrom(this.http.get<Bankclient[]>('/bankclient-list'));
     }
 
     async getBankclientByID(id: number) {
-        return await lastValueFrom(this.http.get<Bankclient>('/api/bankclients/${id}'));
+        return await lastValueFrom(this.http.get<Bankclient>('/bankclients/${id}'));
     }
 
     async getBankclientByName(query : string) {

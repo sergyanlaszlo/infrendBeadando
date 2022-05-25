@@ -5,5 +5,6 @@ export interface Bankclient {
     name: string;
     location : string;
     accountnumber : string;
+    phonenumber : string;
     bankaccount : Bankaccount;
 }

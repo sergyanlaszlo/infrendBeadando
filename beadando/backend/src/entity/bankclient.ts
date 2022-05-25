@@ -14,8 +14,10 @@ export class Bankclient {
     location : string;
 
     @Column()
-    accountnumber : string;
+    phoneNumber : string;
 
     @Column()
-    bankaccount : Bankaccount;
+    accountnumber : string;
+
+    
 }

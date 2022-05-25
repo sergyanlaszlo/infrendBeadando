@@ -1,36 +1,38 @@
-<div class="row">
-    <div class="col-md-6" id="containerDiv">
-        <form [formGroup]="bankaccountForm">
-            <div class="form-group mb-4">
-                <label for="id">Azonosító</label>
-                <input type="text" class="form-control" id="id" formControlName="id" placeholder="Azonosító">
-                <div class="text-danger">
-                    <small *ngIf="f['id'].errors">Hibás azonosító</small>
-                </div>
-            </div>
-
-            <div class="form-group mb-4">
-                <label for="idOfOwner">Tulaj azonosítója</label>
-                <input type="text" class="form-control" id="idOfOwner" formControlName="idOfOwner">
-                <div class="text-danger">
-                    <small *ngIf="f['idOfOwner'].errors">Kötelező adat!</small>
-                </div>
-            </div>
-
-
-            <div class="form-group mb-4">
-                <label for="balance">Egyenleg</label>
-                <input type="number" class="form-control" id="balance" formControlName="balance" placeholder="123456 FT">
-                <div class="text-danger">
-                    <small *ngIf="f['balance'].errors">HIBA</small>
-                </div>
-            </div>
-
-
-
-            <button class="btn btn-primary" (click)="createBankaccount()" [disabled]="bankaccountForm.invalid">
-                Mentés
-            </button>
-        </form>
+<div class="container">
+    <div class="row">
+       <div class="col-md-7">
+           <input type="text" class="form-control" [(ngModel)]="searchQuery" placeholder="Keresés szám alapján">
+       </div>
+       <div class="col-md-2">
+           <button class="btn btn-primary" (click)="search()">Keresés</button>
+       </div>
     </div>
-</div>
+       <div class="row">
+           <div class="col">
+               <table class="table table-striped table-hover">
+                   <thead class="thead-dark">
+                       <tr>
+                           <th scope="col">Id</th>
+                           <th scope="col">Egyenleg</th>
+                       </tr>
+                   </thead>
+               <tbody>
+                   <tr *ngFor="let bankaccount of bankaccounts">
+                       <td>{{bankaccount.id}}</td>
+                       <td>{{bankaccount.balance}}</td>
+                       <td>
+                           <button class="btn btn-primary"
+                           (click)="navigateToBankaccountForm(bankaccount.id)">Szerkesztés</button>
+                       </td>
+                       <td><button class="btn btn-danger"
+                           (click)="deleteBankAccount(bankaccount.id)">Törlés</button></td>
+                   </tr>
+               </tbody>
+               </table>
+               </div>
+               <div>
+                   <button class="btn btn-success" routerLink="/bankaccount-form">+Új ügyfél felvétele</button>
+               </div>
+               
+       </div>
+     </div>

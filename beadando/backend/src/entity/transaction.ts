@@ -8,9 +8,9 @@ export class Transaction {
     transactionid : number;
 
     @Column()
-    accountNumber1 : Bankaccount;
+    accountNumber1 : string;
     @Column()
-    accountNumber2 : Bankaccount;
+    accountNumber2 : string;
     @Column()
     sumOfTransaction : number;
     @Column()
