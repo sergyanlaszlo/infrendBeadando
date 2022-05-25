@@ -34,8 +34,8 @@ export class TransactionFormComponent implements OnInit {
     transactionid : [],
     accountnumber1 : ['', Validators.compose([Validators.pattern('[0-9]{6}'), Validators.required])],
     accountnumber2 : ['', Validators.compose([Validators.pattern('[0-9]{6}'), Validators.required])],
-    sumOfTransaction : [],
-    description : [],
+    sumOfTransaction : ['', Validators.required],
+    description : ['',Validators.required],
     date : []
    });
 
@@ -69,7 +69,7 @@ export class TransactionFormComponent implements OnInit {
   async createTransaction() {
     const transaction = this.transactionForm.value;
     this.transactionService.createTransaction(transaction);
-    this.router.navigateByUrl('/transaction-list')
+    this.router.navigateByUrl('/transaction-list');
   }
 
 }
