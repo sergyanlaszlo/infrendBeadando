@@ -12,45 +12,36 @@ import { BankclientService } from '../services/bankclient.service';
 })
 export class BankclientFormComponent implements OnInit {
 
-  bankclientForm! : FormGroup;
-  bankclients : Bankclient[] = [];
+  bankclientForm!: FormGroup;
+  bankclients: Bankclient[] = [];
 
   constructor(
-    private formBuilder : FormBuilder,
-    private bankclientService : BankclientService,
-    private router : Router,
-    private activatedroute : ActivatedRoute
+    private formBuilder: FormBuilder,
+    private bankclientService: BankclientService,
+    private router: Router,
+    private activatedroute: ActivatedRoute
   ) { }
 
-    get f(): { [key : string]: AbstractControl } {
-      return this.bankclientForm.controls;
-    }
+  get f(): { [key: string]: AbstractControl } {
+    return this.bankclientForm.controls;
+  }
 
 
   async ngOnInit() {
-    
+
     const id = this.activatedroute.snapshot.queryParams['id'];
     this.bankclients = await this.bankclientService.getAllBankclients();
 
-    this.bankclientForm  = this.formBuilder.group({
+    this.bankclientForm = this.formBuilder.group({
       id: [],
-      nev: ['', Validators.compose([Validators.minLength(5), Validators.required])],
-      szuletesihely: ['', Validators.compose([Validators.minLength(3), Validators.required])],
-      telefonszam : ['', Validators.required],
+      name: ['', Validators.compose([Validators.minLength(5), Validators.required])],
+      location: ['', Validators.compose([Validators.minLength(3), Validators.required])],
+      phoneNumber: ['', Validators.required],
       accountnumber: ['', Validators.compose([Validators.pattern('[0-9]{6}'), Validators.required])]
     });
 
-
-  this.bankclientForm = new FormGroup({
-  id : new FormControl(),
-  nev : new FormControl(),
-  szuletesihely : new FormControl(),
-  phonenumber : new FormControl(),
-  accountnumber : new FormControl()
-  });
-  
     if (id) {
-      const bankclient = await  this.bankclientService.getBankclientByID(id);
+      const bankclient = await this.bankclientService.getBankclientByID(id);
       this.bankclientForm.controls['id'].setValue(bankclient?.id);
       this.bankclientForm.controls['nev'].setValue(bankclient?.name);
       this.bankclientForm.controls['szuletesihely'].setValue(bankclient?.location);
@@ -63,7 +54,7 @@ export class BankclientFormComponent implements OnInit {
   }
 
   private clientAleardyExists(list: Bankclient[]): ValidatorFn {
-    return (control : AbstractControl): ValidationErrors | null => {
+    return (control: AbstractControl): ValidationErrors | null => {
       const index = list.find(x => x.accountnumber === control.value)
 
 
@@ -71,7 +62,7 @@ export class BankclientFormComponent implements OnInit {
         return null;
       }
       else {
-        return {clientAleardyExists : true}
+        return { clientAleardyExists: true }
       }
     }
   }

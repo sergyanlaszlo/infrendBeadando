@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
 import { Bankclient } from '../models/bankclient';
-import {BankclientService } from '../services/bankclient.service';
+import { BankclientService } from '../services/bankclient.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -29,12 +29,18 @@ export class BankclientListComponent implements OnInit {
     this.bankclients = await this.bankClientService.searchBankclients(this.searchQuery);
   }
 
-  navigateToBankclientForm(id: any) {
-    this.router.navigate(['/bankclient-form'], {
-      queryParams: {
-        id: id
-      }
-    });
+  navigateToBankclientForm(id?: any) {
+    if (id) {
+      this.router.navigate(['/bankclient-form'], {
+        queryParams: {
+          id: id
+        }
+      });
+    } else {
+      this.router.navigate(['/bankclient-form']);
+    }
+
+
   }
 
   async deleteBankclient(id: any) {

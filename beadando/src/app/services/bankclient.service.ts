@@ -11,11 +11,11 @@ export class BankclientService {
     constructor(private http: HttpClient) {}
 
    async getAllBankclients() {
-        return await lastValueFrom(this.http.get<Bankclient[]>('/bankclient-list'));
+        return await lastValueFrom(this.http.get<Bankclient[]>('/api/bankclient'));
     }
 
     async getBankclientByID(id: number) {
-        return await lastValueFrom(this.http.get<Bankclient>('/bankclients/${id}'));
+        return await lastValueFrom(this.http.get<Bankclient>('/api/bankclients/${id}'));
     }
 
     async getBankclientByName(query : string) {
@@ -33,7 +33,7 @@ export class BankclientService {
     }
 
     async createBankclient(bankclient : Bankclient) {
-        return await lastValueFrom(this.http.post<Bankclient>('/api/bankclients', bankclient));
+        return await lastValueFrom(this.http.post<Bankclient>('/api/bankclient', bankclient));
     }
 
     async  deleteBankclient(id : number) {
