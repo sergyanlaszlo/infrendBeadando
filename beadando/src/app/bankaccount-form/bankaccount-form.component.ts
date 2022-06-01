@@ -26,18 +26,24 @@ export class BankaccountFormComponent implements OnInit {
   }
 
   async ngOnInit() {
+    
+    this.bankaccountForm = this.formBuilder.group({
+      id : [],
+      idOfOwner : [''],
+      balance : ['', Validators.min(0)]
+    });
+
+
       const id = this.activatedroute.snapshot.queryParams['id'];
       this.existingBankaccounts = await this.bankaccountService.getAllBankAccounts();
       
-      this.bankaccountForm = this.formBuilder.group({
-        id : [''],
-        balance : ['', Validators.min(0)]
-      });
+  
   
       if(id) {
         const bankaccount: any = await this.bankaccountService.searchBankAccountByNumber(id);
         this.bankaccountForm.controls['id'].setValue(bankaccount?.id);
         this.bankaccountForm.controls['balance'].setValue(bankaccount?.balance);
+        this.bankaccountForm.controls['idOfOwner'].setValue(bankaccount?.idOfOwner);
       }
   }
 

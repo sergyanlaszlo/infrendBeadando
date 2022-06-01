@@ -11,22 +11,22 @@ export class BankaccountService {
   constructor(private http: HttpClient) { }
 
   async getAllBankAccounts() {
-    return await lastValueFrom(this.http.get<Bankaccount[]>('/api/bankaccounts'));
+    return await lastValueFrom(this.http.get<Bankaccount[]>('/api/bankaccount-list'));
 }
 
 async searchBankAccountByNumber(id : any) {
-  return  await lastValueFrom(this.http.get<Bankaccount[]>('/api/bankaccounts', {
+  return  await lastValueFrom(this.http.get<Bankaccount[]>('/api/bankaccount-list/{$id}', {
       params : { id
       }
   }));
 }
 
 async createBankAccount(bankaccount : Bankaccount) {
-  return await lastValueFrom(this.http.post<Bankaccount>('/api/bankaccounts', bankaccount));
+  return await lastValueFrom(this.http.post<Bankaccount>('/api/bankaccount', bankaccount));
 }
 
 async  deleteBankAccount(id : number) {
-  return await lastValueFrom(this.http.delete<Bankaccount>('/api/bankclients/{$id}'));
+  return await lastValueFrom(this.http.delete<Bankaccount>('/api/bankaccount/' +id));
 }
 
 }

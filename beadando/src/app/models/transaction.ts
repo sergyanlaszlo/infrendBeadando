@@ -7,5 +7,4 @@ export interface Transaction {
     accountNumber2 : Bankaccount;
     sumOfTransaction : number;
     description : string;
-    date : Date;
 }

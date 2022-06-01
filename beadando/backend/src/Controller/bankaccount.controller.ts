@@ -17,6 +17,24 @@ export class BankaccountController extends Controller {
         }     
     }
 
+    delete = async (req, res) => {
+        try {
+            const id = parseInt(req.params.id);
+            const entity = await this.repository.findOne(({ id: id }));
+
+            if (!entity) {
+                return res.status(404).json({ message: 'Not existing entity.' });
+            }
+
+            await this.repository.delete(entity);
+            res.status(200).send();
+        } catch (err) {
+            res.status(500).json({ message: 'DELETE HIBA!!' });
+        }
+
+    }
+    
+
     getById = async (req, res) => {
         
         try {

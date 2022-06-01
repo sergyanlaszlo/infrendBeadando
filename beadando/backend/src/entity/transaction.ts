@@ -15,6 +15,5 @@ export class Transaction {
     sumOfTransaction : number;
     @Column()
     description : string;
-    @Column({ type : Date})
-    date : Date;
+
 }

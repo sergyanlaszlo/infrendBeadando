@@ -12,13 +12,15 @@
                <table class="table table-striped table-hover">
                    <thead class="thead-dark">
                        <tr>
-                           <th scope="col">Id</th>
+                           <th scope="col">Azonosító</th>
+                           <th scope="col">Tulaj azonosítója</th>
                            <th scope="col">Egyenleg</th>
                        </tr>
                    </thead>
                <tbody>
                    <tr *ngFor="let bankaccount of bankaccounts">
                        <td>{{bankaccount.id}}</td>
+                       <td>{{bankaccount.idOfOwner}}</td>
                        <td>{{bankaccount.balance}}</td>
                        <td>
                            <button class="btn btn-primary"

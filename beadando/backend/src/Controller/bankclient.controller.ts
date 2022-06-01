@@ -19,11 +19,48 @@ export class BankclientController extends Controller {
         }     
     }
 
+    /*
+        delete = async (req, res) => {
+            const id = req.params.id;
+        try {
+            
+            const entity = await this.repository.findOne(id);
+            await  this.repository.delete(id);
+
+            if (!entity) {
+                return res.status(404).json({ message: 'Not existing entity.' });
+            }
+
+            await this.repository.delete(entity);
+            res.status(200).send();
+        } catch (err) {
+            res.status(500).json({ message: 'DELETE HIBA!!' });
+        }
+    }
+
+    */
+
+    delete = async (req, res) => {
+        try {
+            const id = parseInt(req.params.id);
+            const entity = await this.repository.findOne(({ id: id }));
+
+            if (!entity) {
+                return res.status(404).json({ message: 'Not existing entity.' });
+            }
+
+            await this.repository.delete(entity);
+            res.status(200).send();
+        } catch (err) {
+            res.status(500).json({ message: 'DELETE HIBA!!' });
+        }
+    }
+
     getById = async (req, res) => {
         
         try {
             const id = req.query.search || '';
-            const specificBankClient = await this.repository.createQueryBuilder('bankclient').where("bankclient.id LIKE CONCAT('%', :search, '%')", {search : id}).getOne();
+            const specificBankClient = await this.repository.createQueryBuilder('bankclient').where("bankclient.id =('%', :search, '%')", {search : id}).getOne();
             res.json(specificBankClient);
         } catch (err) {
             res.status(500).json({ message : err.message});      

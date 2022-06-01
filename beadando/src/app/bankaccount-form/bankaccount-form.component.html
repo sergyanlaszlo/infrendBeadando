@@ -1,17 +1,10 @@
 <div class="row">
     <div class="col-md-6" id="containerDiv">
         <form [formGroup]="bankaccountForm">
-            <div class="form-group mb-4">
-                <label for="id">Azonosító</label>
-                <input type="text" class="form-control" id="id" formControlName="id" placeholder="Azonosító" ngModel required>
-                <div class="text-danger">
-                    <small *ngIf="f['id'].errors">Hibás azonosító</small>
-                </div>
-            </div>
-
+            
             <div class="form-group mb-4">
                 <label for="idOfOwner">Tulaj azonosítója</label>
-                <input type="text" class="form-control" id="idOfOwner" formControlName="idOfOwner" ngModel>
+                <input type="text" class="form-control" id="idOfOwner" formControlName="idOfOwner" >
                 <div class="text-danger">
                     <small *ngIf="f['idOfOwner'].errors">Kötelező adat!</small>
                 </div>
@@ -20,7 +13,7 @@
 
             <div class="form-group mb-4">
                 <label for="balance">Egyenleg</label>
-                <input type="number" class="form-control" id="balance" formControlName="balance" placeholder="123456 FT" ngModel required min="0">
+                <input type="number" class="form-control" id="balance" formControlName="balance" placeholder="123456 FT"  required min="0">
                 <div class="text-danger">
                     <small *ngIf="f['balance'].errors">HIBA</small>
                 </div>
@@ -28,7 +21,7 @@
 
 
 
-            <button class="btn btn-primary" (click)="addBankAccount()" [disabled]="bankaccountForm.invalid">
+            <button class="btn btn-primary" (click)="addBankAccount()">
                 Mentés
             </button>
         </form>

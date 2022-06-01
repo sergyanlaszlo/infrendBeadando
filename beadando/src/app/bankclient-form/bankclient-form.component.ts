@@ -29,9 +29,6 @@ export class BankclientFormComponent implements OnInit {
 
   async ngOnInit() {
 
-    const id = this.activatedroute.snapshot.queryParams['id'];
-    this.bankclients = await this.bankclientService.getAllBankclients();
-
     this.bankclientForm = this.formBuilder.group({
       id: [],
       name: ['', Validators.compose([Validators.minLength(5), Validators.required])],
@@ -40,6 +37,10 @@ export class BankclientFormComponent implements OnInit {
       accountnumber: ['', Validators.compose([Validators.pattern('[0-9]{6}'), Validators.required])]
     });
 
+
+    const id = this.activatedroute.snapshot.queryParams['id'];
+    this.bankclients = await this.bankclientService.getAllBankclients();
+    
     if (id) {
       const bankclient = await this.bankclientService.getBankclientByID(id);
       this.bankclientForm.controls['id'].setValue(bankclient?.id);

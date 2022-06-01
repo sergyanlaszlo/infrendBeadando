@@ -27,18 +27,19 @@ export class TransactionFormComponent implements OnInit {
   }
 
  async ngOnInit() {
+
+  this.transactionForm = this.formBuilder.group({
+    transactionid : [],
+    accountNumber1 : ['', Validators.compose([Validators.pattern('[0-9]{6}'), Validators.required])],
+    accountNumber2 : ['', Validators.compose([Validators.pattern('[0-9]{6}'), Validators.required])],
+    sumOfTransaction : ['', Validators.required],
+    description : ['', Validators.required]
+   });
+
    const id = this.activatedroute.snapshot.queryParams['transactionid'];
    this.transactions = await this.transactionService.getAllTransactions();
 
-   this.transactionForm = this.formBuilder.group({
-    transactionid : [],
-    accountnumber1 : ['', Validators.compose([Validators.pattern('[0-9]{6}'), Validators.required])],
-    accountnumber2 : ['', Validators.compose([Validators.pattern('[0-9]{6}'), Validators.required])],
-    sumOfTransaction : ['', Validators.required],
-    description : ['',Validators.required],
-    date : []
-   });
-
+   
    if(id) {
      const transaction = await this.transactionService.getTransactionById(id);
      this.transactionForm.controls['transactionid'].setValue(transaction?.transactionid);
@@ -46,7 +47,6 @@ export class TransactionFormComponent implements OnInit {
      this.transactionForm.controls['accountNumber2'].setValue(transaction?.accountNumber2);
      this.transactionForm.controls['sumOfTransaction'].setValue(transaction?.sumOfTransaction);
      this.transactionForm.controls['description'].setValue(transaction?.description);
-     this.transactionForm.controls['date'].setValue(transaction?.date);
    }
    else {
      this.transactionForm.controls['transactionid'].addValidators(this.transactionAlreadyExists(this.transactions))

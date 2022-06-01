@@ -16,12 +16,14 @@ async   createTransaction(transaction: Transaction) {
     return await lastValueFrom(this.http.post<Transaction>('/api/transaction',transaction));
   }
 
+
+
  async   getAllTransactions() {
-        return await lastValueFrom(this.http.get<Transaction[]>('/api/transactions'));
+        return await lastValueFrom(this.http.get<Transaction[]>('/api/transaction-list'));
     }
 
  async   getTransactionById(id : any) {
-        return await lastValueFrom(this.http.get<Transaction>('/api/bankclients/${id}'));
+        return await lastValueFrom(this.http.get<Transaction>('/api/transaction/${id}'));
     }
 
 async getTransaction(search : string) {
