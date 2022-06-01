@@ -32,7 +32,7 @@ async getTransaction(search : string) {
     }))
 }
 
-async deleteTransaction(id : number) {
-    return await lastValueFrom(this.http.delete<Transaction>('/api/transaction/' +id))
+async deleteTransaction(id : number) { // /api/transaction/ nem működik de a /api/transaction igen ???
+    return await lastValueFrom(this.http.delete<Transaction>('/api/transaction' +id))
     }
 }
