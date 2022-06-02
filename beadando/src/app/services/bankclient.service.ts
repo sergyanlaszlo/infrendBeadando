@@ -15,7 +15,7 @@ export class BankclientService {
     }
 
     async getBankclientByID(id: number) {
-        return await lastValueFrom(this.http.get<Bankclient>('/api/bankclients/${id}'));
+        return await lastValueFrom(this.http.get<Bankclient>('/api/bankclient/'+id));
     }
 
     async getBankclientByName(query : string) {
@@ -23,6 +23,10 @@ export class BankclientService {
             params : {query}
         }));
     }
+
+    async updateBankClient(bankclient : Bankclient) {
+        return lastValueFrom(this.http.put<Bankclient>('/api/bankclient', bankclient));
+     }
 
     async searchBankclients(query : string) {
         return  await lastValueFrom(this.http.get<Bankclient[]>('/api/bankclient', {

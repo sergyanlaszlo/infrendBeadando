@@ -4,6 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { Transaction } from '../models/transaction';
 import { TransactionService } from '../services/transaction.service';
+import { BankaccountService } from '../services/bankaccount.service';
+import { Repository, getRepository } from 'typeorm';
+import { Bankaccount } from 'backend/src/entity/bankaccount';
 
 @Component({
   selector: 'app-transaction-form',
@@ -14,10 +17,14 @@ export class TransactionFormComponent implements OnInit {
 
   transactionForm!: FormGroup;
   transactions : Transaction[] = [];
+ // repository = getRepository(Bankaccount); ezt dobja : ColumnTypeUndefinedError: Column type for Transaction#accountNumber1 is not defined and cannot be guessed.
+ // Make sure you have turned on an "emitDecoratorMetadata": true option in tsconfig.json.
+ // Also make sure you have imported "reflect-metadata" on top of the main entry file in your application (before any entity imported).If you are using JavaScript instead of TypeScript you must explicitly provide a column type.
 
   constructor(
     private formBuilder : FormBuilder,
     private transactionService : TransactionService,
+    private bankaccountService : BankaccountService,
     private router : Router,
     private activatedroute : ActivatedRoute
   ) { }
@@ -71,5 +78,28 @@ export class TransactionFormComponent implements OnInit {
     this.transactionService.createTransaction(transaction);
     this.router.navigateByUrl('/transaction-list');
   }
+/*
+  async updateAccountOnTransaction() {
+   const accountNumber1 = this.transactionForm.get('accountNumber1')?.value;
+   const accountNumber2 = this.transactionForm.get('accountNumber2')?.value;
+   const changeOfBalance = this.transactionForm.get('sumOfTransaction')?.value;
 
+
+   const bankaccountToModify = getRepository(Bankaccount).findOne(({ id : accountNumber1 }));
+   
+
+   try {
+    await this.repository.createQueryBuilder('bankaccount').
+    where("bankaccount.id LIKE :search", {search : accountNumber1}).update("UPDATE bankaccount SET balance = (balance - :changeOfBalance)", {changeOfBalance : changeOfBalance});
+    await this.repository.createQueryBuilder('bankaccount').
+    where("bankaccount.id LIKE :search", {search : accountNumber2}).update("UPDATE bankaccount SET balance = (balance + :changeOfBalance)", {changeOfBalance : changeOfBalance});
+} catch (err) {
+  console.log('ERROR');
+}    
+  
+
+                                    }
+                                    
+                                    }
+                                    */
 }

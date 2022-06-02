@@ -15,12 +15,16 @@ export class BankaccountService {
 }
 
 async searchBankAccountByNumber(id : any) {
-  return  await lastValueFrom(this.http.get<Bankaccount[]>('/api/bankaccount-list/{$id}', {
+  return  await lastValueFrom(this.http.get<Bankaccount[]>('/api/bankaccount-list/'+id, {
       params : { id
       }
   }));
 }
-
+/*
+async updateBankAccount(bankaccount : Bankaccount) {
+   return lastValueFrom(this.http.put<Bankaccount>('/api/bankaccount', bankaccount));
+}
+*/
 async createBankAccount(bankaccount : Bankaccount) {
   return await lastValueFrom(this.http.post<Bankaccount>('/api/bankaccount', bankaccount));
 }
