@@ -24,9 +24,9 @@ export function getRouter() {
  
 
     router.post('/transaction', transactionController.create)
-    router.get('/transaction:id', transactionController.getOne);
+    router.get('/transaction/:id', transactionController.getOne);
     router.get('/transaction-list', transactionController.getAll);
-    router.put('/transaction-list', transactionController.update);
+    router.put('/transaction', transactionController.update);
     router.delete('/transaction/:id',transactionController.delete);
     
 
