@@ -9,13 +9,15 @@ export class Transaction {
     
 
     @ManyToOne(type => Bankaccount, bankaccount => bankaccount.id, {
-        eager : true
+        eager : true,
+        cascade : true
     })
     source: Bankaccount;
 
 
     @ManyToOne(type => Bankaccount, bankaccount => bankaccount.id, {
-        eager : true
+        eager : true,
+        cascade: true
     })
     destination: Bankaccount;
 

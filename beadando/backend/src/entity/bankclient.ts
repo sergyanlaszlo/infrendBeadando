@@ -19,8 +19,6 @@ export class Bankclient {
     @Column()
     phoneNumber : string;
 
-    @OneToMany(type => Bankaccount, bankaccount => bankaccount.owner, {
-        cascade : true
-    }) 
+    @OneToMany(type => Bankaccount, bankaccount => bankaccount.owner) 
     accounts: Bankaccount[];
 }
