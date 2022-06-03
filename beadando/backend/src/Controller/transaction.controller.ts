@@ -7,6 +7,29 @@ export class TransactionController extends Controller {
     repository = getRepository(Transaction);
     accountRepository = getRepository(Bankaccount);
 
+    create = async (req, res) => {
+        const transaction = this.repository.create(req.body as {});
+
+        try {
+            const source = await this.accountRepository.findOne(transaction.source.id);
+            if (!source) {
+                res.status(400).json({ message: 'Source does not exists.' });
+            }
+
+            // destination
+
+            source.balance -= transaction.sumOfTransaction;
+
+            // ugyanez destination
+
+            await this.accountRepository.save(source);
+            // save destination
+            // save transaction
+        } catch (err) {
+            res.status(500).json({ message: err.message });
+        }
+    }
+
     getAll = async (req, res) => {
         const search = req.query.search || '';
 

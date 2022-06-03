@@ -13,14 +13,14 @@
                    <thead class="thead-dark">
                        <tr>
                            <th scope="col">Azonosító</th>
-                           <th scope="col">Tulaj azonosítója</th>
+                           <th scope="col">Tulaj neve</th>
                            <th scope="col">Egyenleg</th>
                        </tr>
                    </thead>
                <tbody>
                    <tr *ngFor="let bankaccount of bankaccounts">
                        <td>{{bankaccount.id}}</td>
-                       <td>{{bankaccount.idOfOwner}}</td>
+                       <td>{{bankaccount.owner.name}}</td>
                        <td>{{bankaccount.balance}}</td>
                        <td>
                            <button class="btn btn-primary"

@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Bankaccount } from "./bankaccount";
 
 
@@ -16,8 +16,6 @@ export class Bankclient {
     @Column()
     phoneNumber : string;
 
-    @Column()
-    accountnumber : string;
-
-    
+    @OneToMany(type => Bankaccount, bankaccount => bankaccount.owner)
+    accounts: Bankaccount[];
 }

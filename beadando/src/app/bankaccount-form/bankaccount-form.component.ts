@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Bankaccount } from '../models/bankaccount';
+import { Bankclient } from '../models/bankclient';
 import { BankaccountService } from '../services/bankaccount.service';
+import { BankclientService } from '../services/bankclient.service';
 
 @Component({
   selector: 'app-bankaccount-form',
@@ -12,39 +14,43 @@ import { BankaccountService } from '../services/bankaccount.service';
 export class BankaccountFormComponent implements OnInit {
 
   bankaccountForm!: FormGroup;
-  existingBankaccounts : Bankaccount[] = [];
+  existingBankaccounts: Bankaccount[] = [];
+
+  bankClients: Bankclient[] = [];
 
   constructor(
-    private formBuilder : FormBuilder,
-    private bankaccountService : BankaccountService,
-    private router : Router,
-    private activatedroute : ActivatedRoute
+    private formBuilder: FormBuilder,
+    private bankaccountService: BankaccountService,
+    private bankClientService: BankclientService,
+    private router: Router,
+    private activatedroute: ActivatedRoute
   ) { }
 
-  get f(): { [key : string]: AbstractControl } {
+  get f(): { [key: string]: AbstractControl } {
     return this.bankaccountForm.controls;
   }
 
   async ngOnInit() {
-    
+
     this.bankaccountForm = this.formBuilder.group({
-      id : [],
-      idOfOwner : [''],
-      balance : ['', Validators.min(0)]
+      id: [],
+      balance: ['', Validators.min(0)],
+      owner: [null]
     });
 
+    this.bankClients = await this.bankClientService.getAllBankclients();
 
-      const id = this.activatedroute.snapshot.queryParams['id'];
-      this.existingBankaccounts = await this.bankaccountService.getAllBankAccounts();
-      
-  
-  
-      if(id) {
-        const bankaccount: any = await this.bankaccountService.searchBankAccountByNumber(id);
-        this.bankaccountForm.controls['id'].setValue(bankaccount?.id);
-        this.bankaccountForm.controls['balance'].setValue(bankaccount?.balance);
-        this.bankaccountForm.controls['idOfOwner'].setValue(bankaccount?.idOfOwner);
-      }
+    const id = this.activatedroute.snapshot.queryParams['id'];
+    this.existingBankaccounts = await this.bankaccountService.getAllBankAccounts();
+
+
+
+    if (id) {
+      const bankaccount: any = await this.bankaccountService.searchBankAccountByNumber(id);
+      this.bankaccountForm.controls['id'].setValue(bankaccount?.id);
+      this.bankaccountForm.controls['balance'].setValue(bankaccount?.balance);
+      this.bankaccountForm.controls['idOfOwner'].setValue(bankaccount?.idOfOwner);
+    }
   }
 
   async addBankAccount() {

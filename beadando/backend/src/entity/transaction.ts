@@ -7,12 +7,13 @@ export class Transaction {
     @PrimaryGeneratedColumn()
     transactionid : number;
 
-    @Column()
-    accountNumber1 : string;
-    @Column()
-    accountNumber2 : string;
+    source: Bankaccount;
+
+    destination: Bankaccount;
+
     @Column()
     sumOfTransaction : number;
+
     @Column()
     description : string;
 

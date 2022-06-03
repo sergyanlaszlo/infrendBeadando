@@ -9,8 +9,13 @@ export class BankaccountController extends Controller {
         const search = req.query.search || '';
 
         try {
-            const entities = await this.repository.createQueryBuilder('bankaccount')
-            .where("bankaccount.id LIKE CONCAT('%', :search, '%')", {search : search}).getMany();
+            const entities = await this.repository.find();
+
+
+            // const entities = await this.repository.createQueryBuilder('bankaccount')
+            // .where("bankaccount.id LIKE CONCAT('%', :search, '%')", {search : search})
+            // .getMany();
+
             res.json(entities);
         } catch (err) {
             res.status(500).json({ message : err.message});
