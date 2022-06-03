@@ -52,7 +52,7 @@ export class BankclientController extends Controller {
             await this.repository.delete(entity);
             res.status(200).send();
         } catch (err) {
-            res.status(500).json({ message: 'DELETE HIBA!!' });
+            res.status(500).json({ message: err.message });
         }
     }
 

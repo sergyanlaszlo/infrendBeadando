@@ -3,19 +3,17 @@
         <form [formGroup]="transactionForm">
            
             <div class="form-group mb-4">
-                <label for="accountNumber1">1. Bankszámlaszám</label>
-                <input type="text" class="form-control" id="accountNumber1" formControlName="accountNumber1">
-                <div class="text-danger">
-                    <small *ngIf="f['accountNumber1'].errors">Kötelező adat!</small>
-                </div>
+                <label for="source">Utaló</label>
+                <select name="source" id="source" formControlName="source">
+                    <option [ngValue]="{id : bankaccount.id }" *ngFor="let bankaccount of bankaccounts">{{bankaccount.owner.accountnumber}}</option>
+                </select>
             </div>
 
             <div class="form-group mb-4">
-                <label for="accountNumber2">2. Bankszámlaszám</label>
-                <input type="text" class="form-control" id="accountNumber2" formControlName="accountNumber2">
-                <div class="text-danger">
-                    <small *ngIf="f['accountNumber2'].errors">Kötelező adat!</small>
-                </div>
+                <label for="destination">Címzett</label>
+                <select name="destination" id="destination" formControlName="destination">
+                    <option [ngValue]="{id : bankaccount.id }" *ngFor="let bankaccount of bankaccounts">{{bankaccount.owner.accountnumber}}</option>
+                </select>
             </div>
 
 

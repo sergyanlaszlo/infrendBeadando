@@ -49,7 +49,7 @@ export class BankaccountFormComponent implements OnInit {
       const bankaccount: any = await this.bankaccountService.searchBankAccountByNumber(id);
       this.bankaccountForm.controls['id'].setValue(bankaccount?.id);
       this.bankaccountForm.controls['balance'].setValue(bankaccount?.balance);
-      this.bankaccountForm.controls['idOfOwner'].setValue(bankaccount?.idOfOwner);
+      this.bankaccountForm.controls['idOfOwner'].setValue(bankaccount?.owner.id);
     }
   }
 

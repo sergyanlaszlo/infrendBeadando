@@ -13,8 +13,8 @@
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">transactionid</th>
-                        <th scope="col">accountnumber1</th>
-                        <th scope="col">accountnumber2</th>
+                        <th scope="col">Forrás</th>
+                        <th scope="col">Cél</th>
                         <th scope="col">sumOfTransaction</th>
                         <th scope="col">description</th>
                     </tr>
@@ -22,8 +22,8 @@
                 <tbody>
                     <tr *ngFor="let transaction of transactions">
                         <td>{{transaction.transactionid}}</td>
-                        <td>{{transaction.accountNumber1}}</td>
-                        <td>{{transaction.accountNumber2}}</td>
+                        <td>{{transaction.source}}</td> 
+                        <td>{{transaction.destination}}</td>
                         <td>{{transaction.sumOfTransaction}}</td>
                         <td>{{transaction.description}}</td>
                         <td ><button class="btn btn-primary"

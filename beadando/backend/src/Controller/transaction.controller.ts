@@ -13,18 +13,21 @@ export class TransactionController extends Controller {
         try {
             const source = await this.accountRepository.findOne(transaction.source.id);
             if (!source) {
-                res.status(400).json({ message: 'Source does not exists.' });
+                res.status(400).json({ message: 'Source does not exist.' });
             }
 
-            // destination
+            const destination = await this.accountRepository.findOne(transaction.destination.id);
+            if(!destination) {
+                res.status(400).json({message : 'Destination does not exist.'})
+            }
 
             source.balance -= transaction.sumOfTransaction;
-
-            // ugyanez destination
+            destination.balance += transaction.sumOfTransaction;
 
             await this.accountRepository.save(source);
-            // save destination
-            // save transaction
+            await this.accountRepository.save(destination);
+
+            await this.repository.save(transaction);
         } catch (err) {
             res.status(500).json({ message: err.message });
         }

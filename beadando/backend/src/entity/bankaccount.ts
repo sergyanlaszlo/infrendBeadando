@@ -1,3 +1,4 @@
+import { transcode } from "buffer";
 import { PrimaryGeneratedColumn, Column, OneToMany, Entity, ManyToOne } from "typeorm";
 import { Bankclient } from "./bankclient";
 import {Transaction} from './transaction'
@@ -15,6 +16,7 @@ export class Bankaccount {
     })
     owner: Bankclient;
 
-    // @OneToMany(type => Transaction, transaction => transaction.accountNumber1)
-    // transactions: Transaction[];
+     @OneToMany(type => Transaction, transaction => transaction.source)
+     @OneToMany(type => Transaction, transaction => transaction.destination)
+     transactions: Transaction[];
 }

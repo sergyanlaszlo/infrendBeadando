@@ -6,7 +6,7 @@ import { Transaction } from '../models/transaction';
 import { TransactionService } from '../services/transaction.service';
 import { BankaccountService } from '../services/bankaccount.service';
 import { Repository, getRepository } from 'typeorm';
-import { Bankaccount } from 'backend/src/entity/bankaccount';
+import { Bankaccount } from '../models/bankaccount';
 
 @Component({
   selector: 'app-transaction-form',
@@ -17,6 +17,8 @@ export class TransactionFormComponent implements OnInit {
 
   transactionForm!: FormGroup;
   transactions : Transaction[] = [];
+
+  bankaccounts : Bankaccount[] = [];
  // repository = getRepository(Bankaccount); ezt dobja : ColumnTypeUndefinedError: Column type for Transaction#accountNumber1 is not defined and cannot be guessed.
  // Make sure you have turned on an "emitDecoratorMetadata": true option in tsconfig.json.
  // Also make sure you have imported "reflect-metadata" on top of the main entry file in your application (before any entity imported).If you are using JavaScript instead of TypeScript you must explicitly provide a column type.
@@ -37,11 +39,13 @@ export class TransactionFormComponent implements OnInit {
 
   this.transactionForm = this.formBuilder.group({
     transactionid : [],
-    accountNumber1 : ['', Validators.compose([Validators.pattern('[0-9]{6}'), Validators.required])],
-    accountNumber2 : ['', Validators.compose([Validators.pattern('[0-9]{6}'), Validators.required])],
+    source : ['', Validators.compose([Validators.pattern('[0-9]{6}'), Validators.required])],
+    destination : ['', Validators.compose([Validators.pattern('[0-9]{6}'), Validators.required])],
     sumOfTransaction : ['', Validators.required],
     description : ['', Validators.required]
    });
+
+   this.bankaccounts = await this.bankaccountService.getAllBankAccounts();
 
    const id = this.activatedroute.snapshot.queryParams['transactionid'];
    this.transactions = await this.transactionService.getAllTransactions();
@@ -50,8 +54,8 @@ export class TransactionFormComponent implements OnInit {
    if(id) {
      const transaction = await this.transactionService.getTransactionById(id);
      this.transactionForm.controls['transactionid'].setValue(transaction?.transactionid);
-     this.transactionForm.controls['accountNumber1'].setValue(transaction?.accountNumber1);
-     this.transactionForm.controls['accountNumber2'].setValue(transaction?.accountNumber2);
+     this.transactionForm.controls['source'].setValue(transaction?.source);
+     this.transactionForm.controls['destination'].setValue(transaction?.destination);
      this.transactionForm.controls['sumOfTransaction'].setValue(transaction?.sumOfTransaction);
      this.transactionForm.controls['description'].setValue(transaction?.description);
    }

@@ -3,8 +3,8 @@ import { Bankaccount } from "./bankaccount";
 
 export interface Transaction {
     transactionid : number;
-    accountNumber1 : Bankaccount;
-    accountNumber2 : Bankaccount;
+    source : Bankaccount;
+    destination : Bankaccount;
     sumOfTransaction : number;
     description : string;
 }

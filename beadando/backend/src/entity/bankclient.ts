@@ -11,6 +11,9 @@ export class Bankclient {
     name: string;
 
     @Column()
+    accountnumber : string;
+
+    @Column()
     location : string;
 
     @Column()
