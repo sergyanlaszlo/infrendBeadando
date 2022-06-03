@@ -21,7 +21,7 @@
                    <tr *ngFor="let bankaccount of bankaccounts">
                        <td>{{bankaccount.id}}</td>
                        <td>{{bankaccount.owner.name}}</td>
-                       <td>{{bankaccount.balance}}</td>
+                       <td>{{bankaccount.balance}} HUF</td>
                        <td>
                            <button class="btn btn-primary"
                            (click)="navigateToBankaccountForm(bankaccount.id)">Szerkesztés</button>
