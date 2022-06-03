@@ -12,7 +12,8 @@ export class Bankaccount {
     balance : number;
 
     @ManyToOne(type => Bankclient, bankclient => bankclient.accounts, {
-        eager: true
+        eager: true,
+        cascade : true
     })
     owner: Bankclient;
 

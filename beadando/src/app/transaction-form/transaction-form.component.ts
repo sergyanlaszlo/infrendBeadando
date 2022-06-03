@@ -54,7 +54,7 @@ export class TransactionFormComponent implements OnInit {
    if(id) {
      const transaction = await this.transactionService.getTransactionById(id);
      this.transactionForm.controls['transactionid'].setValue(transaction?.transactionid);
-     this.transactionForm.controls['source'].setValue(transaction?.source);
+     this.transactionForm.controls['source'].setValue(transaction?.source); //transaction?.source?.accountnumber -el próbáltam még
      this.transactionForm.controls['destination'].setValue(transaction?.destination);
      this.transactionForm.controls['sumOfTransaction'].setValue(transaction?.sumOfTransaction);
      this.transactionForm.controls['description'].setValue(transaction?.description);
@@ -82,28 +82,11 @@ export class TransactionFormComponent implements OnInit {
     this.transactionService.createTransaction(transaction);
     this.router.navigateByUrl('/transaction-list');
   }
-/*
-  async updateAccountOnTransaction() {
-   const accountNumber1 = this.transactionForm.get('accountNumber1')?.value;
-   const accountNumber2 = this.transactionForm.get('accountNumber2')?.value;
-   const changeOfBalance = this.transactionForm.get('sumOfTransaction')?.value;
 
-
-   const bankaccountToModify = getRepository(Bankaccount).findOne(({ id : accountNumber1 }));
-   
-
-   try {
-    await this.repository.createQueryBuilder('bankaccount').
-    where("bankaccount.id LIKE :search", {search : accountNumber1}).update("UPDATE bankaccount SET balance = (balance - :changeOfBalance)", {changeOfBalance : changeOfBalance});
-    await this.repository.createQueryBuilder('bankaccount').
-    where("bankaccount.id LIKE :search", {search : accountNumber2}).update("UPDATE bankaccount SET balance = (balance + :changeOfBalance)", {changeOfBalance : changeOfBalance});
-} catch (err) {
-  console.log('ERROR');
-}    
   
 
-                                    }
+ }
                                     
-                                    }
-                                    */
-}
+                                    
+                                    
+

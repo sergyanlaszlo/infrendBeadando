@@ -42,8 +42,8 @@ export abstract class Controller {
 */
     getOne = async (req, res) => {
         try {
-            const id = req.params.id;
-            const entity = await this.repository.findOne(id);
+            const id = parseInt(req.params.id);
+            const entity = await this.repository.findOne({id :id});
 
             if (!entity) {
                 return res.status(404).json({ message: 'Entity not found.' });

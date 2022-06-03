@@ -43,7 +43,7 @@ export class BankclientController extends Controller {
     delete = async (req, res) => {
         try {
             const id = parseInt(req.params.id);
-            const entity = await this.repository.findOne(({ id: id }));
+            const entity = await this.repository.findOne({ id: id });
 
             if (!entity) {
                 return res.status(404).json({ message: 'Not existing entity.' });
@@ -58,12 +58,13 @@ export class BankclientController extends Controller {
 
     getById = async (req, res) => {
         
-        try {
-            const id = req.query.search || '';
-            const specificBankClient = await this.repository.createQueryBuilder('bankclient').where("bankclient.id =('%', :search, '%')", {search : id}).getOne();
-            res.json(specificBankClient);
+       
+            try {
+                const id = parseInt(req.params.id);
+                const specificbankclient = await this.repository.findOne({ id: id });
+            res.json(specificbankclient);
         } catch (err) {
             res.status(500).json({ message : err.message});      
+        }
     }
- }
 }

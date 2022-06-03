@@ -3,14 +3,14 @@
         <form [formGroup]="transactionForm">
            
             <div class="form-group mb-4">
-                <label for="source">Utaló</label>
+                <label for="source">Átutaló</label>
                 <select name="source" id="source" formControlName="source">
                     <option [ngValue]="{id : bankaccount.id }" *ngFor="let bankaccount of bankaccounts">{{bankaccount.owner.accountnumber}}</option>
                 </select>
             </div>
 
             <div class="form-group mb-4">
-                <label for="destination">Címzett</label>
+                <label for="destination">Kedvezményezett</label>
                 <select name="destination" id="destination" formControlName="destination">
                     <option [ngValue]="{id : bankaccount.id }" *ngFor="let bankaccount of bankaccounts">{{bankaccount.owner.accountnumber}}</option>
                 </select>

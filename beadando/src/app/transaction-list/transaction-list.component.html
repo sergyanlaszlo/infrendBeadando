@@ -22,7 +22,7 @@
                 <tbody>
                     <tr *ngFor="let transaction of transactions">
                         <td>{{transaction.transactionid}}</td>
-                        <td>{{transaction.source}}</td> 
+                        <td>{{transaction.source}}</td> <!-- transaction.source.owner.name esetén Cannot read properties of undefined (reading 'owner') -->
                         <td>{{transaction.destination}}</td>
                         <td>{{transaction.sumOfTransaction}}</td>
                         <td>{{transaction.description}}</td>
