@@ -38,7 +38,7 @@ export class BankclientFormComponent implements OnInit {
       name: ['', Validators.compose([Validators.minLength(5), Validators.required])],
       location: ['', Validators.compose([Validators.minLength(3), Validators.required])],
       phoneNumber: ['', Validators.required],
-      accountnumber: [123456, Validators.compose([Validators.pattern('[0-9]{6}'), Validators.required])]
+      accountnumber: ['', Validators.compose([Validators.pattern('[0-9]{6}'), Validators.required])]
     });
 
     this.bankaccounts = await  this.bankaccountService.getAllBankAccounts();

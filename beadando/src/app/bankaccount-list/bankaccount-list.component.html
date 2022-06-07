@@ -12,14 +12,14 @@
                <table class="table table-striped table-hover">
                    <thead class="thead-dark">
                        <tr>
-                           <th scope="col">Azonosító</th>
+                           <th scope="col">Bankszámlaszám</th>
                            <th scope="col">Tulaj neve</th>
                            <th scope="col">Egyenleg</th>
                        </tr>
                    </thead>
                <tbody>
                    <tr *ngFor="let bankaccount of bankaccounts">
-                       <td>{{bankaccount.id}}</td>
+                       <td>{{bankaccount.owner.accountnumber}}</td>
                        <td>{{bankaccount.owner.name}}</td>
                        <td>{{bankaccount.balance}} HUF</td>
                        <td>

@@ -8,6 +8,8 @@ import { BankaccountService } from '../services/bankaccount.service';
 import { BankclientService } from '../services/bankclient.service';
 import { Bankclient } from '../models/bankclient';
 
+
+
 @Component({
   selector: 'app-transaction-list',
   templateUrl: './transaction-list.component.html',
@@ -25,7 +27,7 @@ export class TransactionListComponent implements OnInit {
     private transactionService : TransactionService,
     private bankaccountService : BankaccountService,
     private bankclientService : BankclientService,
-    private router : Router
+    private router : Router,
   ) { }
 
   async ngOnInit() {

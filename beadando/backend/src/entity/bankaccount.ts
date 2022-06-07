@@ -17,7 +17,13 @@ export class Bankaccount {
     })
     owner: Bankclient;
 
+
+    //Ahol a bankszámla utalt, a forrás ő volt
      @OneToMany(type => Transaction, transaction => transaction.source)
+     sourceTransactions: Transaction[];
+
+
+     //ahol a bankszámlának utaltak, a cél volt ő
      @OneToMany(type => Transaction, transaction => transaction.destination)
-     transactions: Transaction[];
+     destinationTransactions : Transaction[];
 }

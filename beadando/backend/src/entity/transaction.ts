@@ -8,14 +8,14 @@ export class Transaction {
     transactionid : number;
     
 
-    @ManyToOne(type => Bankaccount, bankaccount => bankaccount.id, {
+    @ManyToOne(type => Bankaccount, bankaccount => bankaccount.sourceTransactions, {
         eager : true,
         cascade : true
     })
     source: Bankaccount;
 
 
-    @ManyToOne(type => Bankaccount, bankaccount => bankaccount.id, {
+    @ManyToOne(type => Bankaccount, bankaccount => bankaccount.destinationTransactions, {
         eager : true,
         cascade: true
     })
