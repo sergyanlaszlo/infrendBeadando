@@ -12,6 +12,7 @@ import { BankaccountFormComponent } from './bankaccount-form/bankaccount-form.co
 import { BankaccountListComponent } from './bankaccount-list/bankaccount-list.component';
 import { Router } from 'express';
 import { RouterModule } from '@angular/router';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { RouterModule } from '@angular/router';
     TransactionFormComponent,
     BankaccountFormComponent,
     BankaccountListComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

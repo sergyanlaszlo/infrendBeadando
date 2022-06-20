@@ -104,5 +104,8 @@
       }
     }
   },
-  "defaultProject": "gyakszi"
+  "defaultProject": "gyakszi",
+  "cli": {
+    "analytics": false
+  }
 }

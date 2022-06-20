@@ -26,8 +26,11 @@
                         <td>{{transaction.destination?.accountnumber}}</td>
                         <td>{{transaction.sumOfTransaction}}</td>
                         <td>{{transaction.description}}</td>
-                        <td ><button class="btn btn-primary"
+                      <!--
+
+                            <td ><button class="btn btn-primary"
                                 (click)="navigateToTransactionForm(transaction.transactionid)">Szerkesztés</button></td>
+                      -->  
                         <td><button class="btn btn-danger"
                                 (click)="deleteTransaction(transaction.transactionid)">Törlés</button></td>
                     </tr>

@@ -8,8 +8,14 @@ import { BankaccountFormComponent } from './bankaccount-form/bankaccount-form.co
 import { BankaccountService } from './services/bankaccount.service';
 import { TransactionListComponent } from './transaction-list/transaction-list.component';
 import { TransactionFormComponent } from './transaction-form/transaction-form.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
+
+  {
+    path:'',
+    component : LoginComponent
+  },
 
   {
     path: 'bankclient-list',
@@ -34,11 +40,8 @@ const routes: Routes = [
   {
     path : 'bankaccount-form',
     component : BankaccountFormComponent
-  },
-  {
-    path:'',
-    component : BankclientListComponent
   }
+ 
 
 ];
 

@@ -35,7 +35,7 @@ export class BankclientFormComponent implements OnInit {
 
     this.bankclientForm = this.formBuilder.group({
       id: [],
-      name: ['', Validators.compose([Validators.minLength(5), Validators.required])],
+      name: ['', Validators.compose([Validators.minLength(3), Validators.required])],
       location: ['', Validators.compose([Validators.minLength(3), Validators.required])],
       phoneNumber: ['', Validators.required],
       accountnumber: ['', Validators.compose([Validators.pattern('[0-9]{6}'), Validators.required])]

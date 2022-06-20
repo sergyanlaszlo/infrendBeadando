@@ -8,11 +8,20 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title='gyakszi';
+
+  public isLoggedIn = false;
+  public isAdmin = false;
+
   
 
   constructor(private router : Router) {};
 
   ngOnInit(): void {
-    this.router.navigateByUrl('/bankclient-list');
+    if (this.isLoggedIn) {
+      this.router.navigateByUrl('/bankclient-list');
+    } else {
+      this.router.navigate(['/']);
+    }
+    
   }
 }
